@@ -14,17 +14,16 @@
 }
 
 .hero {
-  height : 600vh; 
+  height: 100vh;
   position: relative;
 }
 
 .hero__sticky {
-  position : sticky;
-  top      : 0;
-  width    : 100vw;
-  height   : 100vh;
-  overflow : hidden;
-  background: var(--void);
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(circle at top, rgba(193, 18, 31, 0.16), rgba(6, 6, 10, 0.96) 42%);
 }
 
 .hero__video {
