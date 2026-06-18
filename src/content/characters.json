@@ -1,0 +1,30 @@
+[
+  {
+    "id": "eren",
+    "name": "Eren Yeager",
+    "role": "Attack Titan",
+    "desc": "A boy who sought freedom, driven by an unyielding desire to eradicate his enemies. His journey reshapes the entire world.",
+    "img": "/images/eren.png"
+  },
+  {
+    "id": "mikasa",
+    "name": "Mikasa Ackerman",
+    "role": "Top Soldier",
+    "desc": "Bound by devotion and unparalleled combat skill. She protects what remains of her family with lethal precision.",
+    "img": "/images/mikasa.png"
+  },
+  {
+    "id": "armin",
+    "name": "Armin Arlert",
+    "role": "Colossal Titan",
+    "desc": "A brilliant tactician whose mind is sharper than any blade. He inherited the Colossal Titan to save humanity.",
+    "img": "/images/armin.png"
+  },
+  {
+    "id": "levi",
+    "name": "Levi Ackerman",
+    "role": "Captain",
+    "desc": "Humanity's strongest soldier. Cold, calculating, and capable of taking down the most fearsome Titans single-handedly.",
+    "img": "/images/levi.png"
+  }
+]

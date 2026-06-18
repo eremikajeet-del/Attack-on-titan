@@ -1,0 +1,26 @@
+[
+  {
+    "id": "shifters",
+    "label": "Titan Shifters",
+    "value": 9,
+    "suffix": ""
+  },
+  {
+    "id": "walls",
+    "label": "Massive Walls",
+    "value": 3,
+    "suffix": ""
+  },
+  {
+    "id": "height",
+    "label": "Wall Height",
+    "value": 50,
+    "suffix": "m"
+  },
+  {
+    "id": "year",
+    "label": "Fall of Maria",
+    "value": 845,
+    "suffix": ""
+  }
+]

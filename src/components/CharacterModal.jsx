@@ -10,7 +10,7 @@ const backdropVariants = {
 const contentVariants = {
   hidden: { opacity: 0, scale: 0.82, y: 36 },
   visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
-  exit: { opacity: 0, scale: 0.92, y: 20, transition: { duration: 0.25 } },
+  exit: { opacity: 0, scale: 0.95, y: 0, transition: { duration: 0.25 } },
 }
 
 const CharacterModal = ({ character, onClose }) => {
@@ -29,6 +29,18 @@ const CharacterModal = ({ character, onClose }) => {
       document.body.style.overflow = original
     }
   }, [character])
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose()
+      }
+    }
+    if (character) {
+      window.addEventListener('keydown', handleKeyDown)
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [character, onClose])
 
   const handleImageError = () => {
     if (imageIndex < imageCandidates.length - 1) {
@@ -49,105 +61,112 @@ const CharacterModal = ({ character, onClose }) => {
           variants={backdropVariants}
           onClick={onClose}
         >
-        <motion.div
-          className="character-modal"
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          variants={contentVariants}
-          onClick={(event) => event.stopPropagation()}
-        >
-          <button type="button" className="modal-close" onClick={onClose} aria-label="Close profile">
-            ✕
-          </button>
+          <motion.div
+            className="character-modal"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={contentVariants}
+            onClick={(event) => event.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+          >
+            <button type="button" className="modal-close" onClick={onClose} aria-label="Close Profile">
+              ✕
+            </button>
 
-          <div className="modal-head">
-            <div className="modal-portrait" style={{ background: character.portraitGradient }}>
-              {imageSrc && !imageFailed ? (
-                <img
-                  src={imageSrc}
-                  alt={character.name}
-                  className="modal-portrait-img"
-                  onError={handleImageError}
-                  draggable={false}
-                />
-              ) : (
-                <span>{character.initials}</span>
-              )}
-            </div>
-            <div>
-              <p className="modal-label">{character.badge}</p>
-              <h2>{character.name}</h2>
-              <p className="modal-subtitle">{character.role}</p>
-            </div>
-          </div>
-
-          <div className="modal-grid">
-            <div className="modal-card">
-              <h3>Affiliation</h3>
-              <p>{character.affiliation}</p>
-            </div>
-            <div className="modal-card">
-              <h3>Age</h3>
-              <p>{character.age}</p>
-            </div>
-            <div className="modal-card">
-              <h3>Height</h3>
-              <p>{character.height}</p>
-            </div>
-            <div className="modal-card modal-card--quote">
-              <h3>Quote</h3>
-              <p>“{character.quote}”</p>
-            </div>
-          </div>
-
-          <div className="modal-body-grid">
-            <div className="modal-hero-block">
-              <h3>Biography</h3>
-              <p>{character.biography}</p>
-            </div>
-
-            <div className="modal-stats-block">
-              <div className="modal-stat-row">
-                <span>Combat</span>
-                <strong>{character.combatRating}</strong>
+            <div className="modal-content-scroll">
+              <div className="modal-head">
+                <div className="modal-portrait" style={{ background: character.portraitGradient }}>
+                  {imageSrc && !imageFailed ? (
+                    <img
+                      src={imageSrc}
+                      alt={character.name}
+                      className="modal-portrait-img"
+                      onError={handleImageError}
+                      draggable={false}
+                    />
+                  ) : (
+                    <span>{character.initials}</span>
+                  )}
+                </div>
+                <div className="modal-head-content">
+                  <div className="modal-tags">
+                    <span className="modal-label">{character.badge}</span>
+                    <span className="modal-label">{character.role}</span>
+                  </div>
+                  <h2>{character.name}</h2>
+                  <p className="modal-subtitle">{character.tagline}</p>
+                </div>
               </div>
-              <div className="modal-stat-row">
-                <span>Intelligence</span>
-                <strong>{character.intelligenceRating}</strong>
-              </div>
-              <div className="modal-stat-row">
-                <span>Leadership</span>
-                <strong>{character.leadershipRating}</strong>
-              </div>
-            </div>
-          </div>
 
-          <div className="modal-details">
-            <div>
-              <h3>Abilities</h3>
-              <ul>
-                {character.abilities.map((ability) => (
-                  <li key={ability}>{ability}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3>Titan Powers</h3>
-              <p>{character.titanPower}</p>
-            </div>
-          </div>
+              <div className="modal-grid">
+                <div className="modal-card">
+                  <h3>Affiliation</h3>
+                  <p>{character.affiliation}</p>
+                </div>
+                <div className="modal-card">
+                  <h3>Age</h3>
+                  <p>{character.age}</p>
+                </div>
+                <div className="modal-card">
+                  <h3>Height</h3>
+                  <p>{character.height}</p>
+                </div>
+                <div className="modal-card modal-card--quote">
+                  <h3>Quote</h3>
+                  <p>“{character.quote}”</p>
+                </div>
+              </div>
 
-          <div className="modal-quotes">
-            <h3>Famous Quotes</h3>
-            <ul>
-              {character.famousQuotes.map((quote) => (
-                <li key={quote}>“{quote}”</li>
-              ))}
-            </ul>
-          </div>
+              <div className="modal-body-grid">
+                <div className="modal-hero-block">
+                  <h3>Biography</h3>
+                  <p>{character.biography}</p>
+                </div>
+
+                <div className="modal-stats-block">
+                  <div className="modal-stat-row">
+                    <span>Combat</span>
+                    <strong>{character.combatRating}</strong>
+                  </div>
+                  <div className="modal-stat-row">
+                    <span>Intelligence</span>
+                    <strong>{character.intelligenceRating}</strong>
+                  </div>
+                  <div className="modal-stat-row">
+                    <span>Leadership</span>
+                    <strong>{character.leadershipRating}</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div className="modal-details">
+                <div>
+                  <h3>Abilities</h3>
+                  <ul>
+                    {character.abilities.map((ability) => (
+                      <li key={ability}>{ability}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3>Titan Powers</h3>
+                  <p>{character.titanPower}</p>
+                </div>
+              </div>
+
+              <div className="modal-quotes">
+                <h3>Famous Quotes</h3>
+                <ul>
+                  {character.famousQuotes.map((quote) => (
+                    <li key={quote}>“{quote}”</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
       ) : null}
     </AnimatePresence>
   )

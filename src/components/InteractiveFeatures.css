@@ -1,0 +1,61 @@
+.quotes-section {
+  padding: 12rem 0;
+  background: var(--c-surface);
+  text-align: center;
+}
+
+.quotes-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 5vw;
+}
+
+.quotes-display {
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4rem 0;
+}
+
+.quote-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.quote-text {
+  font-family: var(--f-body);
+  font-style: italic;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: var(--c-text);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.quote-author {
+  font-family: var(--f-cinzel);
+  font-size: 1rem;
+  color: var(--c-accent);
+  letter-spacing: 0.15em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.quote-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--c-text-sec);
+  font-family: var(--f-cinzel);
+  font-size: 0.8rem;
+  padding: 1rem 2rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quote-btn:hover {
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+}

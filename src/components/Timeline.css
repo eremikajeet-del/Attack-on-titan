@@ -1,0 +1,125 @@
+.timeline {
+  position: relative;
+  width: 100vw;
+  background: var(--c-surface);
+  padding: 8rem 0;
+  overflow: hidden;
+}
+
+.timeline__header {
+  text-align: center;
+  margin-bottom: 8rem;
+}
+
+.timeline__container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5vw;
+}
+
+.timeline__line-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(-50%);
+}
+
+.timeline__line-progress {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: var(--c-accent);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.timeline__item {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  padding: 3rem 0;
+  width: 100%;
+}
+
+.timeline__item--left {
+  justify-content: flex-start;
+}
+
+.timeline__content {
+  width: 45%;
+  background: var(--c-bg);
+  padding: 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
+}
+
+.timeline__node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  background: var(--c-bg);
+  border: 2px solid var(--c-accent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.timeline__year {
+  display: inline-block;
+  font-family: var(--f-cinzel);
+  font-size: 1.2rem;
+  color: var(--c-accent);
+  margin-bottom: 1rem;
+  letter-spacing: 0.2em;
+}
+
+.timeline__title {
+  font-family: var(--f-display);
+  font-size: 2rem;
+  color: var(--c-text);
+  margin: 0 0 1rem 0;
+}
+
+.timeline__desc {
+  font-family: var(--f-body);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--c-text-sec);
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .timeline__line-bg,
+  .timeline__line-progress {
+    left: 20px;
+    transform: none;
+  }
+
+  .timeline__node {
+    left: 21px;
+  }
+
+  .timeline__item {
+    justify-content: flex-end;
+  }
+
+  .timeline__item--left {
+    justify-content: flex-end;
+  }
+
+  .timeline__content {
+    width: calc(100% - 60px);
+    padding: 2rem;
+  }
+}

@@ -1,0 +1,204 @@
+.footer {
+  position: relative;
+  background: var(--c-bg);
+  padding: 10rem 5vw 4rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Layer 1: Base Background */
+.footer__bg {
+  position: absolute;
+  inset: 0;
+  background: var(--c-bg);
+  z-index: 0;
+}
+
+/* Layer 2: Ambient Etched Glow */
+.footer__radial-glow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at bottom center, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Layer 3: Metallic Emblem */
+.footer__emblem-container {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  width: 100%;
+}
+
+.footer__emblem {
+  width: clamp(500px, 45vw, 750px);
+  opacity: 0.12;
+  /* Etched metal styling: clear highlights, dark silver base */
+  filter: blur(0.5px) grayscale(85%) sepia(20%) hue-rotate(5deg) brightness(0.85) contrast(1.5) drop-shadow(0 4px 6px rgba(0,0,0,0.8));
+  mix-blend-mode: overlay;
+  animation: footer-emblem-float 25s ease-in-out infinite;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 85%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 85%);
+}
+
+@keyframes footer-emblem-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Layer 4: Atmospheric Fog & Dust */
+.footer__fog {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70%;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.6) 30%, transparent 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.footer__dust {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(212, 175, 55, 0.2) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.15;
+  z-index: 4;
+  pointer-events: none;
+  mask-image: linear-gradient(to top, rgba(0,0,0,1), transparent);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1), transparent);
+  animation: footer-dust-drift 35s linear infinite;
+}
+
+@keyframes footer-dust-drift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50px); }
+}
+
+/* Layer 5: Footer Content */
+.footer__inner {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  z-index: 5;
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 4rem;
+  margin-bottom: 2rem;
+}
+
+.footer__logo h2 {
+  font-family: var(--f-display);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--c-text);
+  margin: 0 0 1rem 0;
+  line-height: 1;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.footer__logo span {
+  display: block;
+  font-family: var(--f-cinzel);
+  font-size: 0.4em;
+  color: var(--c-accent);
+  letter-spacing: 0.3em;
+}
+
+.footer__logo p {
+  font-family: var(--f-body);
+  color: var(--c-text-sec);
+  font-size: 1.15rem;
+  font-style: italic;
+  margin: 0;
+}
+
+.footer__links {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.footer__links a {
+  font-family: var(--f-cinzel);
+  font-size: 0.85rem;
+  color: var(--c-text-sec);
+  text-decoration: none;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.footer__links a:hover {
+  color: var(--c-accent);
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.footer__bottom p {
+  font-family: var(--f-body);
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.95rem;
+  text-align: center;
+  margin: 0;
+}
+
+.footer__bottom .footer__credit {
+  font-family: var(--f-cinzel);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-top: 1.5rem;
+}
+
+.footer__bottom .footer__credit span {
+  color: var(--c-accent);
+}
+
+/* Responsive Overrides */
+@media (max-width: 1024px) {
+  .footer__emblem {
+    width: 450px;
+    opacity: 0.1;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 8rem 5vw 3rem;
+  }
+
+  .footer__emblem-container {
+    bottom: 8%;
+  }
+
+  .footer__emblem {
+    width: clamp(300px, 70vw, 350px);
+    opacity: 0.08;
+  }
+
+  .footer__content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 3rem;
+  }
+}

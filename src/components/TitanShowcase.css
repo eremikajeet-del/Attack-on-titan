@@ -1,0 +1,264 @@
+.titan-showcase {
+  position: relative;
+  width: 100vw;
+  background: var(--c-bg);
+  padding: 8rem 0;
+  overflow: hidden;
+}
+
+.titan-showcase__bg-texture {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.titan-showcase__header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 8rem;
+}
+
+.titan-showcase__container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 15rem;
+  padding: 0 5vw;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.titan-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  min-height: 80vh;
+  position: relative;
+}
+
+.titan-panel--right {
+  flex-direction: row-reverse;
+}
+
+.titan-panel__visual {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 2;
+}
+
+.titan-panel__info-container {
+  width: 45%;
+  z-index: 1;
+  position: relative;
+}
+
+/* -- Hero Cinematic Styling for Attack Titan -- */
+.titan-panel--hero .titan-panel__visual {
+  width: 55%;
+}
+
+.titan-panel--hero .titan-panel__info-container {
+  width: 45%;
+  margin-left: -5%; /* Visual overlap */
+}
+
+.titan-panel__img {
+  position: relative;
+  max-width: 100%;
+  height: 75vh;
+  object-fit: contain;
+  object-position: bottom;
+  z-index: 3;
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.9));
+  transform-origin: bottom center;
+}
+
+.titan-panel--hero .titan-panel__img {
+  height: 85vh; /* Extends outside container slightly */
+  margin-bottom: -5vh;
+}
+
+.titan-panel__rim-light {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(circle, rgba(184, 32, 32, 0.4) 0%, rgba(212, 175, 55, 0.1) 40%, transparent 70%);
+  filter: blur(40px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.titan-panel__shadow {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 40px;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.9) 0%, transparent 70%);
+  z-index: 2;
+}
+
+.titan-panel__fog {
+  position: absolute;
+  bottom: -5vh;
+  left: -20%;
+  right: -20%;
+  height: 30vh;
+  background: linear-gradient(to top, var(--c-bg) 10%, rgba(10,10,10,0.6) 40%, transparent 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.titan-panel__steam {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  filter: blur(20px);
+  border-radius: 50%;
+  z-index: 4;
+  pointer-events: none;
+  animation: steam-drift 8s infinite alternate ease-in-out;
+}
+
+.titan-panel__steam--left {
+  top: 30%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.titan-panel__steam--right {
+  top: 40%;
+  right: 20%;
+  animation-delay: -4s;
+}
+
+@keyframes steam-drift {
+  0% { transform: translateY(0) scale(1); opacity: 0.5; }
+  100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
+}
+
+.titan-panel__eyes-glow {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 15px;
+  background: radial-gradient(circle, rgba(144, 238, 144, 0.8) 0%, transparent 80%);
+  filter: blur(4px);
+  z-index: 4;
+  animation: eye-pulse 3s infinite alternate;
+}
+
+@keyframes eye-pulse {
+  0% { opacity: 0.4; transform: translateX(-50%) scale(1); }
+  100% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+}
+
+/* -- Information Card -- */
+.titan-panel__info {
+  background: rgba(15, 15, 18, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding: 4.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(212, 175, 55, 0.1);
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.titan-panel__info:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(212, 175, 55, 0.2);
+}
+
+.titan-panel__name {
+  font-family: var(--f-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  color: var(--c-text);
+  margin: 0 0 2rem 0;
+  text-transform: uppercase;
+  line-height: 1;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.titan-panel__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+  font-family: var(--f-cinzel);
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  color: var(--c-text-sec);
+  text-transform: uppercase;
+}
+
+.accent-label {
+  color: var(--c-accent);
+  margin-right: 0.5rem;
+}
+
+.titan-panel__desc {
+  font-family: var(--f-body);
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--c-text);
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* -- Responsive -- */
+@media (max-width: 1024px) {
+  .titan-panel, .titan-panel--right {
+    flex-direction: column;
+    text-align: center;
+    gap: 4rem;
+  }
+  
+  .titan-panel__visual, .titan-panel__info-container,
+  .titan-panel--hero .titan-panel__visual, .titan-panel--hero .titan-panel__info-container {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .titan-panel__info {
+    padding: 3rem;
+  }
+
+  .titan-panel__eyes-glow {
+    top: 20%;
+  }
+}
+
+@media (max-width: 768px) {
+  .titan-panel__img, .titan-panel--hero .titan-panel__img {
+    height: 60vh;
+    margin-bottom: 0;
+  }
+
+  .titan-panel__info {
+    padding: 2rem;
+  }
+
+  .titan-panel__name {
+    font-size: 2.5rem;
+  }
+}

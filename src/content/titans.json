@@ -1,0 +1,47 @@
+[
+  {
+    "id": "attack",
+    "name": "Attack Titan",
+    "height": "15m",
+    "shifter": "Eren Yeager",
+    "trait": "Always moves forward",
+    "desc": "A titan that has always fought for freedom throughout the generations. It possesses incredible combat capabilities and a unique connection to its future inheritors.",
+    "img": "/images/Eren_Titan.png"
+  },
+  {
+    "id": "armored",
+    "name": "Armored Titan",
+    "height": "15m",
+    "shifter": "Reiner Braun",
+    "trait": "Impenetrable plating",
+    "desc": "Covered in hardened, armor-like skin that can withstand massive artillery fire. It specializes in brute-force breaching.",
+    "img": "/images/ArmoredTitan.png"
+  },
+  {
+    "id": "colossal",
+    "name": "Colossal Titan",
+    "height": "60m",
+    "shifter": "Bertholdt Hoover",
+    "trait": "Steam emission",
+    "desc": "The God of Destruction. Its sheer size is unmatched, and it can emit scorching steam to incinerate anything near it.",
+    "img": "/images/col.png"
+  },
+  {
+    "id": "female",
+    "name": "Female Titan",
+    "height": "14m",
+    "shifter": "Annie Leonhart",
+    "trait": "Agility & Hardening",
+    "desc": "Exceptionally versatile. Capable of selective crystallization and attracting pure titans with her scream.",
+    "img": "/images/FemaleTitan.png"
+  },
+  {
+    "id": "beast",
+    "name": "Beast Titan",
+    "height": "17m",
+    "shifter": "Zeke Yeager",
+    "trait": "Projectile lethality",
+    "desc": "An ape-like titan with immense throwing power. Can command pure titans created through his spinal fluid.",
+    "img": "/images/BeastTitan.png"
+  }
+]

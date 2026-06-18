@@ -4,19 +4,18 @@ import './Navbar.css'
 
 const LINKS = [
   { label: 'Story', href: '#story' },
-  { label: 'Characters', href: '#characters' },
   { label: 'Titans', href: '#titans' },
-  { label: 'Soldiers', href: '#soldiers' },
-  { label: 'Walls', href: '#walls' },
-  { label: 'Chronicle', href: '#chronicle' },
+  { label: 'Characters', href: '#characters' },
+  { label: 'Timeline', href: '#timeline' },
+  { label: 'Corps', href: '#corps' },
+  { label: 'Stats', href: '#stats' },
 ]
 
 const drawerVariants = {
-  hidden: { opacity: 0, y: -22 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: -20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
+  exit: { opacity: 0, y: -20, transition: { duration: 0.3 } }
 }
-
-const itemTransition = { duration: 0.42, ease: [0.22, 1, 0.36, 1] }
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
@@ -29,7 +28,7 @@ const Navbar = () => {
     const updateScrollState = () => {
       setScrolled(window.scrollY > 50)
 
-      const currentPosition = window.scrollY + window.innerHeight * 0.45
+      const currentPosition = window.scrollY + window.innerHeight * 0.4
       let current = 0
       sectionIds.forEach((id, index) => {
         const section = document.getElementById(id)
@@ -49,18 +48,14 @@ const Navbar = () => {
     <>
       <motion.nav
         className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
-        initial={{ y: -28, opacity: 0 }}
+        initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="navbar__inner">
-          <a href="#story" className="navbar__logo" onClick={() => setMenuOpen(false)}>
-            <span className="navbar__logo-wings">⸸</span>
-            <span className="navbar__logo-text">
-              <span className="navbar__logo-main">ATTACK</span>
-              <span className="navbar__logo-sub">ON TITAN</span>
-            </span>
-            <span className="navbar__logo-wings">⸸</span>
+          <a href="#hero" className="navbar__logo" onClick={() => setMenuOpen(false)}>
+            <span className="navbar__logo-main">ATTACK</span>
+            <span className="navbar__logo-sub">ON TITAN</span>
           </a>
 
           <ul className="navbar__links">
@@ -70,22 +65,21 @@ const Navbar = () => {
                   href={link.href}
                   className={`navbar__link ${activeLink === index ? 'navbar__link--active' : ''}`}
                 >
-                  <span className="navbar__link-num">0{index + 1}</span>
                   {link.label}
                 </a>
               </li>
             ))}
           </ul>
 
-          <a href="#titans" className="navbar__cta">
-            Explore
+          <a href="#timeline" className="navbar__cta">
+            Discover
           </a>
 
           <button
             type="button"
             className={`navbar__burger ${menuOpen ? 'navbar__burger--open' : ''}`}
             onClick={() => setMenuOpen((prev) => !prev)}
-            aria-label="Open mobile navigation"
+            aria-label="Toggle menu"
           >
             <span />
             <span />
@@ -97,11 +91,11 @@ const Navbar = () => {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className={`navbar__drawer ${menuOpen ? 'navbar__drawer--open' : ''}`}
+            className="navbar__drawer"
             variants={drawerVariants}
             initial="hidden"
             animate="visible"
-            exit="hidden"
+            exit="exit"
           >
             <div className="navbar__drawer-inner">
               {LINKS.map((link, index) => (
@@ -109,21 +103,14 @@ const Navbar = () => {
                   key={link.label}
                   href={link.href}
                   className="navbar__drawer-link"
-                  transition={{ ...itemTransition, delay: index * 0.06 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
                   onClick={() => setMenuOpen(false)}
                 >
-                  <span className="navbar__drawer-num">0{index + 1}</span>
                   {link.label}
                 </motion.a>
               ))}
-              <motion.a
-                href="#titans"
-                className="navbar__drawer-cta"
-                transition={{ ...itemTransition, delay: 0.42 }}
-                onClick={() => setMenuOpen(false)}
-              >
-                Explore Titans
-              </motion.a>
             </div>
           </motion.div>
         )}
